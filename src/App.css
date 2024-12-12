@@ -1,0 +1,41 @@
+.problem-box {
+  width: 45vw; /* 50% of the screen width */
+  height: 88vh; /* Full screen height minus the navbar height (assuming navbar height is 4rem) */
+  border: 1px solid rgb(99, 99, 99);
+  background-color: #262626; /* Example background color */
+  margin: 5px;
+  margin-left: 1rem;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+nav{
+  background-color: #2f3136;
+  border-bottom: 1px solid rgb(99, 99, 99);
+}
+.editor {
+  width: 55vw; /* 50% of the screen width */
+  height: 88vh ; /* Same height as the problem box */
+  border: 1px solid rgb(99, 99, 99);
+  background-color: #262626; /* Example background color */
+  margin: 5px;
+  margin-right: 1rem;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+h1{
+  font-size: 150%;
+}
+
+.langbutton{
+  flex: auto;
+  margin-right: 6rem;
+  justify-items: end;
+}
+
+.langbutton{
+  position: relative;
+  z-index: 1000;
+}
+
