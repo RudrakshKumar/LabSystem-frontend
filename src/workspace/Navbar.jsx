@@ -1,26 +1,22 @@
 import { useState } from "react";
 
 const Navbar = () => {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
-    const toggleMobileMenu = () => {
-      setIsMobileMenuOpen(!isMobileMenuOpen);
-    };
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
-    <nav className="p-3 mb-1 shadow-md">
-       <div className="max-w-full mx-auto flex justify-between items-center w-full">
-        {/* Logo */}
-        <div className="text-white text-lg font-semibold">
-          MyWebsite
+    <nav className="p-3 mb-1 shadow-md ">
+      <div className="max-w-full mx-auto flex justify-between items-center w-full">
+        {/* Logo and Website Name */}
+        <div className="flex items-center space-x-2">
+          <img src="https://neetcode.io/assets/neetcode-io-logo.png" alt="Logo" className=" ml-4 h-8 w-8" />
+          <div className="text-white text-lg font-semibold">
+            Lab Systems - Your Coding Environment
+          </div>
         </div>
-        
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-6">
-          <li><a href="#" className="text-white hover:text-gray-300">Home</a></li>
-          <li><a href="#" className="text-white hover:text-gray-300">About</a></li>
-          <li><a href="#" className="text-white hover:text-gray-300">Services</a></li>
-          <li><a href="#" className="text-white hover:text-gray-300">Contact</a></li>
-        </ul>
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
@@ -33,12 +29,9 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} md:hidden`}>
+      <div className={`${isMobileMenuOpen ? "block" : "hidden"} md:hidden`}>
         <ul className="space-y-4 p-4">
-          <li><a href="#" className="text-white hover:text-gray-300">Home</a></li>
-          <li><a href="#" className="text-white hover:text-gray-300">About</a></li>
-          <li><a href="#" className="text-white hover:text-gray-300">Services</a></li>
-          <li><a href="#" className="text-white hover:text-gray-300">Contact</a></li>
+          {/* Empty Mobile Menu */}
         </ul>
       </div>
     </nav>
@@ -46,4 +39,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

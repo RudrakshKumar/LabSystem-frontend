@@ -25,7 +25,8 @@ nav{
 }
 
 h1{
-  font-size: 150%;
+  font-family: helvetica, Arial, sans-serif;
+  font-size:x-large;
 }
 
 .langbutton{
@@ -36,6 +37,15 @@ h1{
 
 .langbutton{
   position: relative;
-  z-index: 1000;
+  z-index: 70;
+}
+
+.outputdiv{
+  top:60px
+}
+
+.problemstat{
+  font-size: 18px;
+  font-family: Arial, sans-serif;
 }
 
