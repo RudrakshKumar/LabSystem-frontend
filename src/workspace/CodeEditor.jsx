@@ -1,11 +1,10 @@
-import { useRef, useState} from "react";
+import { useRef, useState } from "react";
 import { Editor } from "@monaco-editor/react";
 import { CODE_SNIPPETS } from "../constants";
 import PropTypes from "prop-types";
 import LanguageSelector from "./LanguageSelector";
 import { executeCode } from "../api";
 import { toast } from "react-toastify";
-// import Outputbar from "./Outputbar";
 
 const CodeEditor = () => {
   const editorRef = useRef();
@@ -14,7 +13,7 @@ const CodeEditor = () => {
   const [output, setOutput] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [flag, setflag] = useState(0);
+  const [flag, setFlag] = useState(0);
 
   const onMount = (editor) => {
     editorRef.current = editor;
@@ -28,16 +27,18 @@ const CodeEditor = () => {
 
   const runCode = async () => {
     const sourceCode = editorRef.current.getValue();
-    setflag(1);
+    setFlag(1);
     if (!sourceCode) {
       toast.error("No code to execute. Please write some code!");
       return;
     }
     try {
       setIsLoading(true);
-      const { run: result } = await executeCode(language, sourceCode);
-      setOutput(result.output.split("\n"));
-      result.stderr ? setIsError(true) : setIsError(false);
+      const { output, stderr } = await executeCode(language, sourceCode);
+      setOutput(output); // Set the output lines
+      console.log(output);
+      console.log(stderr);
+      setIsError(!!stderr); // Set error state based on stderr
     } catch (error) {
       console.error(error);
       toast.error(error.message || "An error occurred while running the code.");
@@ -47,7 +48,7 @@ const CodeEditor = () => {
   };
 
   return (
-        <div className="h-1/2 relative">
+    <div className="h-1/2 relative">
       {/* Left Panel */}
       <div className="languagediv w-full mb-2">
         <LanguageSelector language={language} onSelect={onSelect} />
@@ -72,23 +73,24 @@ const CodeEditor = () => {
       </div>
 
       {flag === 1 && (
-          <div
-            className={`outputdiv absolute bottom-full left-0 right-0 z-50 h-[62vh] p-2 overflow-auto border rounded-md ${
-              isError
-                ? "text-red-400 border-red-500 "
-                : "text-gray-200 border-gray-700 "
-            } ${isLoading ?"bg-gray-700" : "bg-gray-900"}`}
-          >
-            {output
-              ? output.map((line, i) => (
-                  <p key={i} className="whitespace-pre-wrap">
-                    {line}
-                  </p>
-                ))
-              : "Running . . . "}
-          </div>
-        )}
-
+        <div
+          className={`outputdiv absolute bottom-full left-0 right-0 z-50 h-[62vh] p-2 overflow-auto border rounded-md ${
+            isError
+              ? "text-red-400 border-red-500 "
+              : "text-gray-200 border-gray-700 "
+          } ${isLoading ? "bg-gray-700" : "bg-gray-900"}`}
+        >
+          {output && output.length > 0 ? (
+            output.map((line, i) => (
+              <p key={i} className="whitespace-pre-wrap">
+                {line}
+              </p>
+            ))
+          ) : (
+            "Running . . . "
+          )}
+        </div>
+      )}
 
       <nav className="p-3 bg-gray-800 mt-4 ">
         <div className="max-w-full h-7 mx-auto flex justify-between items-center w-full ">
@@ -100,7 +102,7 @@ const CodeEditor = () => {
                 }`}
                 disabled={isLoading}
                 onClick={() => {
-                  setflag(0);
+                  setFlag(0);
                   setOutput(null);
                 }}
               >
@@ -129,7 +131,6 @@ const CodeEditor = () => {
         </div>
       </nav>
     </div>
-
   );
 };
 
@@ -137,8 +138,7 @@ CodeEditor.propTypes = {
   language: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   setValue: PropTypes.func.isRequired,
-  onSelect: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired,
 };
-
 
 export default CodeEditor;
