@@ -6,11 +6,12 @@ export const LANGUAGE_VERSIONS = {
 };
 
 export const CODE_SNIPPETS = {
-  javascript: `function printStarPattern(n) {\n\tfor (let i = 1; i <= n; i++) {\n\t\tconsole.log("*".repeat(i));\n\t}\n}\n\nconst n = 5; // Number of rows\nprintStarPattern(n);`,
+  javascript: `function main() {\n\t// Your code here\n}\n\nmain();`,
 
-  python: `def print_star_pattern(n):\n\tfor i in range(1, n + 1):\n\t\tprint('*' * i)\n\nn = 5  # Number of rows\nprint_star_pattern(n)`,
+  python: `def main():\n\t# Your code here\n\nif __name__ == "__main__":\n\tmain()`,
 
-  java: `public class StarPattern {\n\tpublic static void main(String[] args) {\n\t\tint n = 5; // Number of rows\n\t\tfor (int i = 1; i <= n; i++) {\n\t\t\tfor (int j = 1; j <= i; j++) {\n\t\t\t\tSystem.out.print("*");\n\t\t\t}\n\t\t\tSystem.out.println();\n\t\t}\n\t}\n}`,
+  java: `public class Main {\n\tpublic static void main(String[] args) {\n\t\t// Your code here\n\t}\n}`,
 
-  c: `#include <stdio.h>\n\nvoid printStarPattern(int n) {\n\tfor (int i = 1; i <= n; i++) {\n\t\tfor (int j = 1; j <= i; j++) {\n\t\t\tprintf("*");\n\t\t}\n\t\tprintf("\\n");\n\t}\n}\n\nint main() {\n\tint n = 5; // Number of rows\n\tprintStarPattern(n);\n\treturn 0;\n}`,
+  c: `#include <stdio.h>\n\nint main() {\n\t// Your code here\n\treturn 0;\n}`,
 };
+

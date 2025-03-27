@@ -1,26 +1,23 @@
-import Problem from './workspace/problem';
-import Editor from './workspace/editor';
-import './App.css';
-import Navbar from './workspace/Navbar';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import ProblemEditor from "./workspace/ProblemEditor";
+import Navbar from "./workspace/Navbar";
+// import './App.css';
 
 function App() {
-
-
   return (
-    <>
+    <Router>
       <Navbar />
       <div className="flex">
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/editor/:id" element={<ProblemEditor />} />
+          <Route path="/home" element={<Home />} />
 
-        <div className='problem-box'>
-          <Problem />
-        </div >
-
-        <div className='editor'>
-          <Editor />
-        </div>
-
+        </Routes>
       </div>
-    </>
+    </Router>
   );
 }
 

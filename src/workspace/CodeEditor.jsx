@@ -91,7 +91,7 @@ const CodeEditor = () => {
 
 
       <nav className="p-3 bg-gray-800 mt-4 ">
-        <div className="max-w-full mx-auto flex justify-between items-center w-full ">
+        <div className="max-w-full h-7 mx-auto flex justify-between items-center w-full ">
           <div className="flex justify-end w-full space-x-4">
             {flag === 1 && (
               <button

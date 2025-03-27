@@ -1,0 +1,107 @@
+[
+  {
+    "id": 1,
+    "title": "Two Sum",
+    "description": "Given an array of integers and a target sum, find two distinct indices such that the numbers at these indices add up to the target. You may assume each input has exactly one solution.",
+    "topic": "Array",
+    "status": "Pending"
+  },
+  {
+    "id": 2,
+    "title": "Reverse Linked List",
+    "description": "Given the head of a singly linked list, reverse the list and return the new head. You should do this in-place with O(1) extra space, iteratively or recursively.",
+    "topic": "Linked List",
+    "status": "Submitted"
+  },
+  {
+    "id": 3,
+    "title": "Valid Parentheses",
+    "description": "Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. The string is valid if brackets are closed in the correct order and match.",
+    "topic": "Stack",
+    "status": "Pending"
+  },
+  {
+    "id": 4,
+    "title": "Merge Intervals",
+    "description": "Given an array of intervals where each interval is represented as [start, end], merge all overlapping intervals and return an array of non-overlapping intervals sorted by their start times.",
+    "topic": "Array",
+    "status": "Submitted"
+  },
+  {
+    "id": 5,
+    "title": "Binary Tree Inorder Traversal",
+    "description": "Given the root of a binary tree, return its inorder traversal as an array. Inorder traversal means visiting the left subtree first, then the root, and finally the right subtree recursively.",
+    "topic": "Binary Tree",
+    "status": "Pending"
+  },
+  {
+    "id": 6,
+    "title": "Find Peak Element",
+    "description": "A peak element is greater than its adjacent elements. Given an array of numbers, find a peak element and return its index. You may assume that the array contains at least one peak.",
+    "topic": "Binary Search",
+    "status": "Submitted"
+  },
+  {
+    "id": 7,
+    "title": "Longest Palindromic Substring",
+    "description": "Given a string s, return the longest palindromic substring in s. A palindrome is a string that reads the same forward and backward. Your solution should run in O(n^2) or better.",
+    "topic": "String",
+    "status": "Pending"
+  },
+  {
+    "id": 8,
+    "title": "Course Schedule",
+    "description": "You are given n courses labeled 0 to n-1, and a list of prerequisite pairs. Determine if you can complete all courses. If a cycle exists in prerequisites, it is impossible.",
+    "topic": "Graph",
+    "status": "Pending"
+  },
+  {
+    "id": 9,
+    "title": "Word Ladder",
+    "description": "Given a beginWord, an endWord, and a word list, find the shortest transformation sequence from beginWord to endWord. Each transformation must change exactly one letter and exist in the word list.",
+    "topic": "Graph",
+    "status": "Submitted"
+  },
+  {
+    "id": 10,
+    "title": "Longest Substring Without Repeating Characters",
+    "description": "Given a string s, find the length of the longest contiguous substring that does not contain any repeating characters. Implement an efficient solution using sliding window and hash set techniques.",
+    "topic": "String",
+    "status": "Pending"
+  },
+  {
+    "id": 11,
+    "title": "Maximal Square",
+    "description": "Given a 2D binary matrix of 0s and 1s, find the largest square that contains only 1s and return its area. Use dynamic programming to optimize space and runtime complexity.",
+    "topic": "Dynamic Programming",
+    "status": "Submitted"
+  },
+  {
+    "id": 12,
+    "title": "Trapping Rain Water",
+    "description": "Given n non-negative integers representing an elevation map, compute the amount of trapped water. The water is trapped between higher elevations and follows the concept of two-pointer approach.",
+    "topic": "Two Pointers",
+    "status": "Pending"
+  },
+  {
+    "id": 13,
+    "title": "LRU Cache",
+    "description": "Design an LRU (Least Recently Used) cache that supports get and put operations. The cache should have a fixed capacity and remove the least recently used item when full.",
+    "topic": "Design",
+    "status": "Pending"
+  },
+  {
+    "id": 14,
+    "title": "Edit Distance",
+    "description": "Given two words, find the minimum number of operations to convert one word into the other. Allowed operations are insertion, deletion, and replacement of characters, solved using dynamic programming.",
+    "topic": "Dynamic Programming",
+    "status": "Pending"
+  },
+  {
+    "id": 15,
+    "title": "Merge k Sorted Lists",
+    "description": "Given k sorted linked lists, merge them into one sorted linked list. Use a priority queue (heap) for optimal efficiency, ensuring a time complexity of O(N log k).",
+    "topic": "Heap",
+    "status": "Pending"
+  }
+]
