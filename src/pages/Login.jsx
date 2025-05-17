@@ -8,7 +8,7 @@ const Login = () => {
   const [usn, setUsn] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { isAuthenticated,setIsAuthenticated} = useAuth();
+  const { isAuthenticated, setIsAuthenticated, setStudentUsn } = useAuth();
   const navigate = useNavigate(); // Initialize navigate
 
   const handleLogin = async () => {
@@ -21,6 +21,7 @@ const Login = () => {
       );
       setError("");
       setIsAuthenticated(true);
+      setStudentUsn(usn); // Store the USN in context
       navigate("/home"); // Navigate to Home.js
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");

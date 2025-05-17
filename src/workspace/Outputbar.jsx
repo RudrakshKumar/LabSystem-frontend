@@ -48,7 +48,7 @@ const Outputbar = ({ editorRef, language }) => {
                     >
                         Close
                     </button> : <div/>}
-                    <button
+                    {/* <button
                         className={`px-4 py-2 rounded-md border text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring focus:ring-blue-400 ${
                         isLoading ? "opacity-50 cursor-not-allowed" : ""
                         }`}
@@ -56,7 +56,16 @@ const Outputbar = ({ editorRef, language }) => {
                         onClick={runCode}
                     >
                         {isLoading ? "Running..." : "Run Code"}
-                    </button>
+                    </button> */}
+                    {/* <button
+                        className={`px-4 py-2 rounded-md border text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring focus:ring-blue-400 ${
+                        isLoading ? "opacity-50 cursor-not-allowed" : ""
+                        }`}
+                        disabled={isLoading}
+                        onClick={runCode}
+                    >
+                        {isLoading ? "Running..." : "Run Code"}
+                    </button> */}
 
                     <button
                         className={`px-4 py-2 rounded-md border text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring focus:ring-green-400 ${

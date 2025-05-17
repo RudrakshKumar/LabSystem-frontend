@@ -3,8 +3,8 @@ import Student from "../models/Student.js";
 // Insert Student
 export const insertStudent = async (req, res) => {
     try {
-        const { firstName,lastName, usn, branch, sec } = req.body;
-        const student = new Student({ firstName,lastName, usn, branch, sec });
+        const { firstName, lastName, usn, branch, sec, code } = req.body;
+        const student = new Student({ firstName, lastName, usn, branch, sec, code });
         await student.save();
         res.status(201).json({ message: "Student added successfully" });
     } catch (error) {
@@ -22,7 +22,23 @@ export const getStudents = async (req, res) => {
     }
 };
 
-//Retrieve a single student
+// Get Student by ID
+export const getStudentById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const student = await Student.findById(id);
+
+        if (!student) {
+            return res.status(404).json({ message: "Student not found" });
+        }
+
+        res.json(student);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+// Get Student by USN
 export const getStudentByUSN = async (req, res) => {
     try {
         const { usn } = req.params;
@@ -38,8 +54,29 @@ export const getStudentByUSN = async (req, res) => {
     }
 };
 
+// Update Student Code
+export const updateStudentCode = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { code } = req.body;
 
-// Delete Student by ID //
+        const student = await Student.findByIdAndUpdate(
+            id,
+            { code },
+            { new: true }
+        );
+
+        if (!student) {
+            return res.status(404).json({ message: "Student not found" });
+        }
+
+        res.json(student);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+// Delete Student by ID
 export const deleteStudentById = async (req, res) => {
     try {
         const { id } = req.params;

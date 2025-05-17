@@ -56,7 +56,6 @@ const Home = () => {
               <th className="py-3 px-6 text-left">ID</th>
               <th className="py-3 px-6 text-left">Title</th>
               <th className="py-3 px-6 text-left">Topic</th>
-              <th className="py-3 px-6 text-left">Status</th>
             </tr>
           </thead>
           <tbody>
@@ -67,9 +66,6 @@ const Home = () => {
                   {q.title}
                 </td>
                 <td className="py-3 px-6">{q.topic}</td>
-                <td className={`py-3 px-6 ${q.status === "Submitted" ? "text-green-400" : "text-red-400"}`}>
-                  {q.status}
-                </td>
               </tr>
             ))}
           </tbody>

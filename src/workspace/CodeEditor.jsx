@@ -5,6 +5,10 @@ import PropTypes from "prop-types";
 import LanguageSelector from "./LanguageSelector";
 import { executeCode } from "../api";
 import { toast } from "react-toastify";
+import ChatInterface from "./ChatInterface";
+import InputInterface from "./InputInterface";
+import { useAuth } from "../context/AuthContext";
+import axios from "axios";
 
 const CodeEditor = () => {
   const editorRef = useRef();
@@ -14,6 +18,10 @@ const CodeEditor = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [flag, setFlag] = useState(0);
+  const [showChat, setShowChat] = useState(false);
+  const [showInput, setShowInput] = useState(false);
+  const [codeInput, setCodeInput] = useState("");
+  const { studentUsn } = useAuth();
 
   const onMount = (editor) => {
     editorRef.current = editor;
@@ -25,6 +33,26 @@ const CodeEditor = () => {
     setValue(CODE_SNIPPETS[language]);
   };
 
+  const saveCodeToDatabase = async (sourceCode) => {
+    try {
+      // First get the student's ID using their USN
+      const studentResponse = await axios.get(`http://localhost:5000/api/students/byUsn/${studentUsn}`, {
+        withCredentials: true
+      });
+      
+      if (studentResponse.data && studentResponse.data._id) {
+        // Then update the code using the student's ID
+        await axios.patch(`http://localhost:5000/api/students/updateCode/${studentResponse.data._id}`, {
+          code: sourceCode
+        }, { withCredentials: true });
+      } else {
+        console.error("Could not find student ID");
+      }
+    } catch (error) {
+      console.error("Error saving code:", error);
+    }
+  };
+
   const runCode = async () => {
     const sourceCode = editorRef.current.getValue();
     setFlag(1);
@@ -33,18 +61,25 @@ const CodeEditor = () => {
       return;
     }
     try {
+      // Save the code to database before execution
+      await saveCodeToDatabase(sourceCode);
+      
       setIsLoading(true);
-      const { output, stderr } = await executeCode(language, sourceCode);
-      setOutput(output); // Set the output lines
+      const { output, stderr } = await executeCode(language, sourceCode, codeInput);
+      setOutput(output);
       console.log(output);
       console.log(stderr);
-      setIsError(!!stderr); // Set error state based on stderr
+      setIsError(!!stderr);
     } catch (error) {
       console.error(error);
       toast.error(error.message || "An error occurred while running the code.");
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleInputSave = (input) => {
+    setCodeInput(input);
   };
 
   return (
@@ -118,6 +153,24 @@ const CodeEditor = () => {
             >
               {isLoading ? "Running..." : "Run Code"}
             </button>
+            <button
+              className={`px-4 py-2 rounded-md border text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring focus:ring-purple-400 ${
+                isLoading ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              disabled={isLoading}
+              onClick={() => setShowInput(true)}
+            >
+              Input
+            </button>
+            <button
+              className={`px-4 py-2 rounded-md border text-white bg-blue-300 hover:bg-blue-200 focus:outline-none focus:ring focus:ring-blue-400 ${
+                isLoading ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              disabled={isLoading}
+              onClick={() => setShowChat(true)}
+            >
+              Buddy
+            </button>
 
             <button
               className={`px-4 py-2 rounded-md border text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring focus:ring-green-400 ${
@@ -130,6 +183,9 @@ const CodeEditor = () => {
           </div>
         </div>
       </nav>
+
+      {showChat && <ChatInterface onClose={() => setShowChat(false)} />}
+      {showInput && <InputInterface onClose={() => setShowInput(false)} onSave={handleInputSave} />}
     </div>
   );
 };

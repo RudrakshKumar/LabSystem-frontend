@@ -6,7 +6,8 @@ const StudentSchema = new mongoose.Schema({
     lastName: { type: String, required: true },
     branch: { type: String, required: true },
     sec: { type: String, required: true },
-    password: { type: String }
+    password: { type: String },
+    code: { type: String }
 });
 
 
